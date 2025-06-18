@@ -1,30 +1,26 @@
-// src/components/MovieContainer.jsx
-import React, { useState, useEffect } from "react";
-import MovieList from "./MovieList";
+import React, { useEffect, useState } from "react";
+import Movies from "./Movies";
 
-const MovieContainer = () => {
+const Moviecontainer = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simular llamada AJAX al archivo JSON
-    fetch("/data/movies.json")
+    fetch("/movies.json")
       .then((res) => res.json())
       .then((data) => {
         setMovies(data);
         setLoading(false);
       })
-      .catch((error) => {
-        console.error("Error al cargar las películas:", error);
+      .catch((err) => {
+        console.error("Error cargando JSON:", err);
         setLoading(false);
       });
   }, []);
 
-  if (loading) {
-    return <p>Cargando películas...</p>;
-  }
+  if (loading) return <p>Cargando películas...</p>;
 
-  return <MovieList movies={movies} />;
+  return <Movies movies={movies} />;
 };
 
-export default MovieContainer;
+export default Moviecontainer;

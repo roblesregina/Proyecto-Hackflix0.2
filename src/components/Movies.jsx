@@ -1,28 +1,31 @@
+import React from "react";
 
-function Movies({ peliculas }) {
-  if (peliculas.length === 0) {
-    return <p>Lo sentimos, no se encontraron películas con el rating solicitado.</p>;
+const Movies = ({ movies }) => {
+  if (!movies || movies.length === 0) {
+    return <p>No se encontraron películas para mostrar.</p>;
   }
 
   return (
     <div className="row">
-      {peliculas.map((pelicula) => (
-        <div key={pelicula.id} className="col-md-3 mb-4">
+      {movies.map((movie) => (
+        <div key={movie.id} className="col-md-4 mb-4">
           <div className="card h-100">
             <img
-              src={pelicula.poster_path}
+              src={movie.poster_path}
+              alt={movie.title}
               className="card-img-top"
-              alt={pelicula.title}
+              style={{ height: "400px", objectFit: "cover" }}
             />
-            <div className="card-body">
-              <h5 className="card-title">{pelicula.title}</h5>
-              <p>Calificación: {pelicula.vote_average}</p>
+            <div className="card-body d-flex flex-column">
+              <h5 className="card-title">{movie.title}</h5>
+              <p className="card-text flex-grow-1">{movie.overview}</p>
+              {/* Aquí podés integrar el componente Rating para las estrellas */}
             </div>
           </div>
         </div>
       ))}
     </div>
   );
-}
+};
 
 export default Movies;
