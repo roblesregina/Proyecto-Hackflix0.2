@@ -2,7 +2,7 @@ import { useState } from "react";
 import Rating from "./components/Rating";
 import Movies from "./components/Movies";
 import moviesData from "./data/movies.json";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [ratingSeleccionado, setRatingSeleccionado] = useState(0);
