@@ -1,29 +1,31 @@
 import React from "react";
 
 const Movies = ({ movies }) => {
-  if (!movies || movies.length === 0) {
-    return <p>No se encontraron películas para mostrar.</p>;
-  }
-
   return (
     <div className="row">
-      {movies.map((movie) => (
-        <div key={movie.id} className="col-md-4 mb-4">
-          <div className="card h-100">
-            <img
-              src={movie.poster_path}
-              alt={movie.title}
-              className="card-img-top"
-              style={{ height: "400px", objectFit: "cover" }}
-            />
-            <div className="card-body d-flex flex-column">
-              <h5 className="card-title">{movie.title}</h5>
-              <p className="card-text flex-grow-1">{movie.overview}</p>
-              {/* Aquí podés integrar el componente Rating para las estrellas */}
+      {movies.map((movie) => {
+        const imageUrl = movie.poster_path
+          ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+          : "https://via.placeholder.com/500x750?text=No+Image";
+
+        return (
+          <div key={movie.id} className="col-md-3 mb-4">
+            <div className="card h-100 bg-dark text-white">
+              <img
+                src={imageUrl}
+                className="card-img-top"
+                alt={movie.title}
+              />
+              <div className="card-body">
+                <h5 className="card-title">{movie.title}</h5>
+                <p className="card-text" style={{ fontSize: "0.9rem" }}>
+                  {movie.overview ? movie.overview.slice(0, 100) + "..." : "Sin descripción disponible"}
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

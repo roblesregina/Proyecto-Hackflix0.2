@@ -1,8 +1,6 @@
-body {
-  background-color: black;
-  font-family: Arial, Helvetica, sans-serif;
+h1{
+  font-family: "Poetsen One", sans-serif;
+  font-size: 40px;
+  font-style: normal;
 }
 
-.parrafo {
-  color: white;
-}
