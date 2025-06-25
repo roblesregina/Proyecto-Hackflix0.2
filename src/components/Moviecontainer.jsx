@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useMemo, useRef, useCallback } from "react";
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+  useRef,
+  useCallback,
+} from "react";
 import Movies from "./Movies";
 import StarFilter from "./Rating";
 
@@ -92,7 +98,9 @@ const Moviecontainer = ({ showSearch }) => {
   return (
     <>
       <div className="container my-4">
-        <h3 className="mb-3">Filtrar por rating</h3>
+        <h3 className="mb-3 text-white d-flex justify-content-center align-items-center">
+          Filtrar por rating
+        </h3>
         <StarFilter onChange={handleRatingChange} />
 
         {showSearch && (
