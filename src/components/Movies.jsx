@@ -1,34 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Movies = ({ movies }) => {
-  if (!movies || movies.length === 0) {
-    return <p>No se encontraron películas para mostrar.</p>;
-  }
-
   return (
     <div className="row">
-      {movies.map((movie) => (
-        <div key={movie.id} className="col-md-4 mb-4">
-          <Link
-            to={`/pelicula/${movie.id}`}
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            <div className="card h-100">
+      {movies.map((movie) => {
+        const imageUrl = movie.poster_path
+          ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+          : "https://via.placeholder.com/500x750?text=No+Image";
+
+        return (
+          <div key={movie.id} className="col-md-3 mb-4">
+            <div className="card h-100 bg-dark text-white">
               <img
-                src={movie.poster_path}
-                alt={movie.title}
+                src={imageUrl}
                 className="card-img-top"
-                style={{ height: "400px", objectFit: "cover" }}
+                alt={movie.title}
               />
-              <div className="card-body d-flex flex-column">
+              <div className="card-body">
                 <h5 className="card-title">{movie.title}</h5>
-                <p className="card-text flex-grow-1">{movie.overview}</p>
+                <p className="card-text" style={{ fontSize: "0.9rem" }}>
+                  {movie.overview ? movie.overview.slice(0, 100) + "..." : "Sin descripción disponible"}
+                </p>
               </div>
             </div>
-          </Link>
-        </div>
-      ))}
+          </div>
+        );
+      })}
     </div>
   );
 };

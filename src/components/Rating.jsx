@@ -1,14 +1,18 @@
-import ReactStars from "react-rating-stars-component";
+import React from "react";
+import { Rating } from "react-simple-star-rating";
 
-function Rating({ onChange }) {
+function StarFilter({ onChange }) {
   return (
-    <ReactStars
-      count={5}
-      onChange={onChange}
-      size={30}
-      activeColor="#ffd700"
-    />
+    <div>
+      <Rating
+        onClick={onChange}
+        size={30}
+        allowFraction={false}
+        fillColor="#ffd700"
+        emptyColor="#444"
+      />
+    </div>
   );
 }
 
-export default Rating;
+export default StarFilter;
