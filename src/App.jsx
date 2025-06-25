@@ -13,18 +13,13 @@ function App() {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-black px-4">
-        <h1
-          className="navbar-brand"
-          href="#"
-          style={{
-            fontFamily: "Bebas Neue, sans-serif",
-            color: "red",
-            fontSize: "2rem",
-            letterSpacing: "1px",
-          }}
-        >
-          Hackflix
-        </h1>
+<a className="navbar-brand" href="#">
+  <img
+    src="/img/logo.png"
+    alt="Hackflix"
+    style={{ height: "40px", objectFit: "contain" }}
+  />
+</a>
         <div className="ms-auto d-flex">
           <button
             onClick={toggleSearch}
@@ -35,6 +30,19 @@ function App() {
           </button>
         </div>
       </nav>
+      <div>
+        <video
+  autoPlay
+  loop
+  muted
+  playsInline
+  className="w-100"
+  style={{ maxHeight: "800px", objectFit: "fill" }}
+>
+  <source src="/vid/banner2_2_1.mp4" type="video/mp4" />
+  Tu navegador no soporta el video.
+</video>
+      </div>
 
       <div className="container mt-4">
         <Moviecontainer showSearch={showSearch} />
