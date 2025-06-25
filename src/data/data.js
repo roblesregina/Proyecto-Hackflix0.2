@@ -1,3 +1,4 @@
+import movies from "../data/data";
 export const movies = [
   {
     id: 11216,
