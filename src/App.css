@@ -1,6 +1,9 @@
-h1{
+h1 {
   font-family: "Poetsen One", sans-serif;
   font-size: 40px;
   font-style: normal;
 }
 
+body {
+  background-color: black;
+}

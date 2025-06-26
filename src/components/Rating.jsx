@@ -3,7 +3,7 @@ import { Rating } from "react-simple-star-rating";
 
 function StarFilter({ onChange }) {
   return (
-    <div>
+    <div className="d-flex justify-content-center align-items-center">
       <Rating
         onClick={onChange}
         size={30}
