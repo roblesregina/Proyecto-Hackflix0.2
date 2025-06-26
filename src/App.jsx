@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Moviecontainer from "./components/Moviecontainer";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css"
 
 function App() {
   const [showSearch, setShowSearch] = useState(false);
@@ -13,13 +12,13 @@ function App() {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-black px-4">
-<a className="navbar-brand" href="#">
-  <img
-    src="/img/logo.png"
-    alt="Hackflix"
-    style={{ height: "40px", objectFit: "contain" }}
-  />
-</a>
+        <a className="navbar-brand" href="#">
+          <img
+            src="/img/logo.png"
+            alt="Hackflix"
+            style={{ height: "40px", objectFit: "contain" }}
+          />
+        </a>
         <div className="ms-auto d-flex">
           <button
             onClick={toggleSearch}
@@ -30,18 +29,18 @@ function App() {
           </button>
         </div>
       </nav>
-      <div>
+      <div style={{ position: "relative" }}>
         <video
-  autoPlay
-  loop
-  muted
-  playsInline
-  className="w-100"
-  style={{ maxHeight: "800px", objectFit: "fill" }}
->
-  <source src="/vid/banner2_2_1.mp4" type="video/mp4" />
-  Tu navegador no soporta el video.
-</video>
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-100"
+          style={{ maxHeight: "600px", objectFit: "fill" }}
+        >
+          <source src="/vid/banner2_2_1.mp4" type="video/mp4" />
+          Tu navegador no soporta el video.
+        </video>
       </div>
 
       <div className="container mt-4">

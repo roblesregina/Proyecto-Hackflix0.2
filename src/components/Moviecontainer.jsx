@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useMemo, useRef, useCallback } from "react";
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+  useRef,
+  useCallback,
+} from "react";
 import Movies from "./Movies";
 import StarFilter from "./Rating";
 
@@ -96,13 +102,24 @@ const Moviecontainer = ({ showSearch }) => {
         <StarFilter onChange={handleRatingChange} />
 
         {showSearch && (
-          <input
-            type="text"
-            className="form-control my-3"
-            placeholder="Ingresa el título de una película..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+          <div
+            style={{
+              position: "absolute",
+              top: "70%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "30%",
+              zIndex: 10,
+            }}
+          >
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Ingresa el título de una película..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
         )}
       </div>
 
