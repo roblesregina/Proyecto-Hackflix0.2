@@ -1,11 +1,13 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { movies } from "../data/data";
+import React from "react";
+import {useParams, useNavigate} from "react-router-dom";
+import {movies} from "../data/data";
 
 function MovieDetail() {
-  const { id } = useParams();
+  const {id} = useParams();
   const navigate = useNavigate();
 
   const movie = movies.find((m) => m.id === parseInt(id));
+  console.log(movie);
 
   if (!movie) {
     return <p>Película no encontrada.</p>;
@@ -17,7 +19,7 @@ function MovieDetail() {
       <img
         src={movie.poster_path}
         alt={movie.title}
-        style={{ width: "300px", maxWidth: "100%", marginBottom: "1rem" }}
+        style={{width: "300px", maxWidth: "100%", marginBottom: "1rem"}}
       />
       <p>
         <strong>Descripción:</strong> {movie.overview}

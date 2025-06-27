@@ -1,5 +1,9 @@
-import React, { useState } from "react";
-import Moviecontainer from "./components/Moviecontainer";
+import React, {useState} from "react";
+import {Routes, Route} from "react-router-dom";
+import Navbar from "./components/layout/Navbar";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+// import MovieDetail from "./pages/MovieDetail";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -12,41 +16,12 @@ function App() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-black px-4">
-        <a className="navbar-brand" href="#">
-          <img
-            src="/img/logo.png"
-            alt="Hackflix"
-            style={{ height: "40px", objectFit: "contain" }}
-          />
-        </a>
-        <div className="ms-auto d-flex">
-          <button
-            onClick={toggleSearch}
-            className="btn bg-black text-white me-2"
-            type="button"
-          >
-            Buscar
-          </button>
-        </div>
-      </nav>
-      <div>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-100"
-          style={{ maxHeight: "600px", objectFit: "fill" }}
-        >
-          <source src="/vid/banner2_2_1.mp4" type="video/mp4" />
-          Tu navegador no soporta el video.
-        </video>
-      </div>
-
-      <div className="container mt-4">
-        <Moviecontainer showSearch={showSearch} />
-      </div>
+      <Navbar onToggleSearch={toggleSearch} />
+      <Routes>
+        <Route path="/" element={<Home showSearch={showSearch} />} />
+        {/* <Route path="/movie/:id" element={<MovieDetail />} /> */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </>
   );
 }
