@@ -1,10 +1,16 @@
-import React, {useEffect, useState, useMemo, useRef, useCallback} from "react";
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+  useRef,
+  useCallback,
+} from "react";
 import Movies from "./Movies";
 import StarFilter from "../Rating";
 
 const API_KEY = "57186adfe10ba4b885487a0a103bad45";
 
-const Moviecontainer = ({showSearch}) => {
+const Moviecontainer = ({ showSearch }) => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -98,13 +104,24 @@ const Moviecontainer = ({showSearch}) => {
         <StarFilter onChange={handleRatingChange} />
 
         {showSearch && (
-          <input
-            type="text"
-            className="form-control my-3"
-            placeholder="Ingresa el título de una película..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+          <div
+            style={{
+              position: "absolute",
+              top: "70%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "30%",
+              zIndex: 10,
+            }}
+          >
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Ingresa el título de una película..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
         )}
       </div>
 
@@ -112,7 +129,7 @@ const Moviecontainer = ({showSearch}) => {
         <Movies movies={filteredMovies} />
       </div>
 
-      <div ref={loaderRef} style={{height: "100px"}} />
+      <div ref={loaderRef} style={{ height: "100px" }} />
       {loading && <p className="text-center">Cargando más películas...</p>}
     </>
   );
