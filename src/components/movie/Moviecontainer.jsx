@@ -1,16 +1,10 @@
-import React, {
-  useEffect,
-  useState,
-  useMemo,
-  useRef,
-  useCallback,
-} from "react";
+import React, {useEffect, useState, useMemo, useRef, useCallback} from "react";
 import Movies from "./Movies";
-import StarFilter from "../Rating";
+import StarFilter from "./Rating";
 
-const API_KEY = "57186adfe10ba4b885487a0a103bad45";
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
-const Moviecontainer = ({ showSearch }) => {
+const Moviecontainer = ({showSearch}) => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -112,8 +106,7 @@ const Moviecontainer = ({ showSearch }) => {
               transform: "translate(-50%, -50%)",
               width: "30%",
               zIndex: 10,
-            }}
-          >
+            }}>
             <input
               type="text"
               className="form-control"
@@ -129,7 +122,7 @@ const Moviecontainer = ({ showSearch }) => {
         <Movies movies={filteredMovies} />
       </div>
 
-      <div ref={loaderRef} style={{ height: "100px" }} />
+      <div ref={loaderRef} style={{height: "100px"}} />
       {loading && <p className="text-center">Cargando más películas...</p>}
     </>
   );

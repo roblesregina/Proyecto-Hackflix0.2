@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {useParams, useNavigate} from "react-router-dom";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 function MovieDetail() {
-  const { id } = useParams();
+  const {id} = useParams();
   const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -71,8 +71,7 @@ function MovieDetail() {
 
           <button
             className="btn btn-primary mt-3"
-            onClick={() => navigate("/")}
-          >
+            onClick={() => navigate("/")}>
             Volver a Home
           </button>
         </div>
