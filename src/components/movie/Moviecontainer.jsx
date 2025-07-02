@@ -7,8 +7,9 @@ import React, {
 } from "react";
 import Movies from "./Movies";
 import StarFilter from "./Rating";
+import InfiniteScroll from "react-infinite-scroll-component";
 
-const API_KEY = "57186adfe10ba4b885487a0a103bad45";
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 const Moviecontainer = ({ showSearch }) => {
   const [movies, setMovies] = useState([]);
@@ -34,6 +35,7 @@ const Moviecontainer = ({ showSearch }) => {
         );
         return uniqueMovies;
       });
+      setPage(pageToLoad);
     } catch (err) {
       console.error("Error cargando películas:", err);
     } finally {
@@ -44,32 +46,6 @@ const Moviecontainer = ({ showSearch }) => {
   useEffect(() => {
     fetchMovies(1);
   }, []);
-
-  // Scroll infinito
-  const handleObserver = useCallback(
-    (entries) => {
-      const target = entries[0];
-      if (target.isIntersecting && !loading) {
-        const nextPage = page + 1;
-        setPage(nextPage);
-        fetchMovies(nextPage);
-      }
-    },
-    [loading, page]
-  );
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(handleObserver, {
-      root: null,
-      rootMargin: "20px",
-      threshold: 1.0,
-    });
-    if (loaderRef.current) observer.observe(loaderRef.current);
-
-    return () => {
-      if (loaderRef.current) observer.unobserve(loaderRef.current);
-    };
-  }, [handleObserver]);
 
   // Manejo estrellas
   const handleRatingChange = (stars) => {
@@ -104,22 +80,42 @@ const Moviecontainer = ({ showSearch }) => {
         <StarFilter onChange={handleRatingChange} />
 
         {showSearch && (
-          <input
-            type="text"
-            className="form-control my-3"
-            placeholder="Ingresa el título de una película..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+          <div
+            style={{
+              position: "absolute",
+              top: "70%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "30%",
+              zIndex: 10,
+            }}
+          >
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Ingresa el título de una película..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
         )}
       </div>
 
       <div className="container mt-4">
-        <Movies movies={filteredMovies} />
+        <InfiniteScroll
+          dataLength={filteredMovies.length}
+          next={() => fetchMovies(page + 1)}
+          hasMore={true}
+          loader={<p className="text-center">Cargando más películas...</p>}
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Has llegado al final.</b>
+            </p>
+          }
+        >
+          <Movies movies={filteredMovies} />
+        </InfiniteScroll>
       </div>
-
-      <div ref={loaderRef} style={{ height: "100px" }} />
-      {loading && <p className="text-center">Cargando más películas...</p>}
     </>
   );
 };
